@@ -1,16 +1,14 @@
 {
-  "name": "nuxt-app",
+  "name": "root",
   "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "dev": "lerna run dev --stream"
   },
+  "dependencies": {},
   "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@types/node": "^18",
-    "nuxt": "^3.5.2"
+    "lerna": "^7.0.1"
   }
 }
