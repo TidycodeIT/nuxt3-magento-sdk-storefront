@@ -1,63 +1,8 @@
-# Nuxt 3 Minimal Starter
+# magento-sdk-storefront
+A boilerplate storefront built with the Vue Storefront Magento 2 Integration and Storefront UI
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+🚧 This is a work in progress. 🚧
 
-## Setup
+More will be posted here in the following days. Stay tuned. 
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+If you're looking for the magento2-sdk repo you can find it here: https://github.com/vuestorefront/magento2
