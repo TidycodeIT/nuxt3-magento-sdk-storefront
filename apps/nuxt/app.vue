@@ -20,5 +20,4 @@ const submit = () => {
     search('watch')
 }
 const products = useState<ProductInterface[]>('products')
-
 </script>
