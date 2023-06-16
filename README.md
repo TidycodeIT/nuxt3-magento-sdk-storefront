@@ -8,7 +8,7 @@ A boilerplate storefront built with the Vue Storefront Magento 2 Integration and
 ## Getting Started
 clone the project
 ```
-get clone https://github.com/vuestorefront/nuxt3-magento-sdk-storefront.git
+git clone https://github.com/vuestorefront/nuxt3-magento-sdk-storefront.git
 ```
 cd into project
 ```
