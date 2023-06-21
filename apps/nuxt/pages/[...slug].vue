@@ -5,7 +5,6 @@
 </template>
   
 <script lang="ts" setup>
-
 import CATEGORY from '~/modules/catalog/category/pages/index.vue';
 import PRODUCT from '~/modules/catalog/product/pages/index.vue';
 
