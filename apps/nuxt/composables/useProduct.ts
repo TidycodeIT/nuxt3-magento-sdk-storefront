@@ -24,8 +24,31 @@ export default function () {
             refresh
         }
     }
+
+    const getProductDetails = async (sku: string) => {
+        const {data, pending, refresh} = await useAsyncData('data', async () => {
+            console.log('fetching product by sku', getProductDetails, sku)
+            return await sdk.magento.productDetails({
+                filter: {
+                    sku: {
+                        eq: sku
+                    }
+                },
+            })
+        })
+
+        const productDetails = useState('productDetails')
+        productDetails.value = data.value?.data?.products?.items
+
+        return {
+            data: data.value?.data?.products?.items,
+            pending,
+            refresh
+        }
+    }
     
     return {
-        search
+        search,
+        getProductDetails
     }
 }
