@@ -41,17 +41,7 @@ export const integrations = {
                        }
                      }
                    `
-                }),
-                'category-search-custom-query': ({ variables, metadata }) => ({
-                    variables,
-                    query: `
-                      query categorySearch($filters: CategoryFilterInput) {
-                        categoryList(filters: $filters) {
-                          ${metadata.fields}
-                        }
-                      }
-                    `
-                 }),    
+                }),    
           },
         configuration: {
             api: process.env.VSF_MAGENTO_GRAPHQL_URL,

@@ -1,7 +1,6 @@
 import { sdk } from "~/sdk.config";
 import { SortEnum, Product, ProductInterface } from "@vue-storefront/magento-types";
 
-
 export default function () {
     const search = async (term: string) => {
         const { data, pending, refresh } = await useAsyncData('data', async () => {
@@ -77,7 +76,6 @@ export default function () {
     const getDisplayPrice = (product: Product, locales = 'en-US') => {
         const currency = product.price_range?.minimum_price?.regular_price.currency as string
         const price = product.price_range?.minimum_price?.regular_price.value?.valueOf() as number
-        console.log('******** ===  >>>', product.price_range)
 
         return price ? new Intl.NumberFormat(locales, {
             style: 'currency',
