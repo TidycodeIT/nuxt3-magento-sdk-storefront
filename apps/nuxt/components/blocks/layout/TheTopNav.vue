@@ -4,7 +4,7 @@
     <header ref="menuRef"
       class="flex justify-center w-full border-0 bg-primary-700 border-neutral-200 h-14 md:relative md:h-20 md:z-10">
       <div class="flex items-center flex-nowrap justify-start h-full max-w-[1536px] w-full px-4 md:px-10">
-        <a href="#" aria-label="SF Homepage"
+        <a href="/" aria-label="SF Homepage"
           class="flex shrink-0 text-white mr-2 md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm">
           <picture>
             <source
