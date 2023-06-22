@@ -18,7 +18,7 @@
 
     <div class="py-4 mb-4 border-gray-200 border-y">
       <div
-          class="bg-primary-100 text-primary-700 flex justify-center gap-1.5 py-1.5 typography-text-sm items-center mb-4 rounded-md">
+        class="bg-primary-100 text-primary-700 flex justify-center gap-1.5 py-1.5 typography-text-sm items-center mb-4 rounded-md">
         <SfIconShoppingCartCheckout />
         1 in cart
       </div>
@@ -26,14 +26,14 @@
         <div class="flex flex-col items-stretch xs:items-center xs:inline-flex">
           <div class="flex border border-neutral-300 rounded-md">
             <SfButton type="button" variant="tertiary" :disabled="count <= min" square class="rounded-r-none p-3"
-                      :aria-controls="inputId" aria-label="Decrease value" @click="dec()">
+              :aria-controls="inputId" aria-label="Decrease value" @click="dec()">
               <SfIconRemove />
             </SfButton>
             <input :id="inputId" v-model="count" type="number" role="spinbutton"
-                   class="grow appearance-none mx-2 w-8 text-center bg-transparent font-medium [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:display-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:display-none [&::-webkit-outer-spin-button]:m-0 [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none disabled:placeholder-disabled-900 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
-                   :min="min" :max="max" @input="handleOnChange" />
+              class="grow appearance-none mx-2 w-8 text-center bg-transparent font-medium [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:display-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:display-none [&::-webkit-outer-spin-button]:m-0 [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none disabled:placeholder-disabled-900 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
+              :min="min" :max="max" @input="handleOnChange" />
             <SfButton type="button" variant="tertiary" :disabled="count >= max" square class="rounded-l-none p-3"
-                      :aria-controls="inputId" aria-label="Increase value" @click="inc()">
+              :aria-controls="inputId" aria-label="Increase value" @click="inc()">
               <SfIconAdd />
             </SfButton>
           </div>
@@ -108,25 +108,22 @@ import {
 import { clamp } from '@storefront-ui/shared';
 import { useCounter } from '@vueuse/core';
 import { Product, ProductInterface } from '@vue-storefront/magento-types';
-
+import { getProductDescription, getDisplayPrice } from '~/modules/catalog/product/getters/productGetters'
 const props = defineProps<{ product: Product, productDetails: ProductInterface }>()
 
 const product = props.product
 const details = props.productDetails
 
-const { getProductDescription, getDisplayPrice } = useProduct()
 const descriptionHtml = getProductDescription(details)
-
 const inputId = useId();
 const min = ref(1);
 const max = ref(999);
 const { count, inc, dec, set } = useCounter(1, { min: min.value, max: max.value });
+const displayPrice = computed(() => getDisplayPrice(product))
+
 function handleOnChange(event: Event) {
   const currentValue = (event.target as HTMLInputElement)?.value;
   const nextValue = parseFloat(currentValue);
   set(clamp(nextValue, min.value, max.value));
 }
-
-const displayPrice = computed(() => getDisplayPrice(product))
-
 </script>
