@@ -1,5 +1,5 @@
 <template>
-  <section class="md:max-w-[640px]">
+  <section v-if="product" class="md:max-w-[640px]">
     <div class="inline-flex items-center justify-center text-sm font-medium text-white bg-secondary-600 py-1.5 px-3 mb-4">
       <SfIconSell size="sm" class="mr-1.5" />
       Sale

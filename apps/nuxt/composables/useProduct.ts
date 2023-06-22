@@ -31,7 +31,7 @@ export default function () {
         const customQuery = {
             products: 'products-custom-query',
               metadata: {
-                fields: 'items { sku name media_gallery { url label position disabled} }'
+                fields: 'items { sku name media_gallery{ url label position disabled } price_range { minimum_price { regular_price { value currency } }} }'
               }
            };
 
@@ -77,6 +77,7 @@ export default function () {
     const getDisplayPrice = (product: Product, locales = 'en-US') => {
         const currency = product.price_range?.minimum_price?.regular_price.currency as string
         const price = product.price_range?.minimum_price?.regular_price.value?.valueOf() as number
+        console.log('******** ===  >>>', product.price_range)
 
         return price ? new Intl.NumberFormat(locales, {
             style: 'currency',

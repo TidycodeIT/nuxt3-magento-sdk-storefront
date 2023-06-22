@@ -153,7 +153,6 @@ function getChildren(category) {
       title: child?.name,
       link: `/${child.url_path}${child.url_suffix}`
     })
-
   )
 
   return children
