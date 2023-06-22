@@ -1,7 +1,9 @@
+import type { Product } from '@vue-storefront/magento-types'
+
 interface MediaGalleryItem {
-  small: string;
-  normal: string;
-  big: string;
+  small: string | undefined;
+  normal: string | undefined;
+  big: string | undefined;
 }
 
 export const getGallery = (product: Product, maxGallerySize = 4): MediaGalleryItem[] => {
@@ -11,20 +13,23 @@ export const getGallery = (product: Product, maxGallerySize = 4): MediaGalleryIt
     return images;
   }
 
-  const selectedGallery = product.configurable_product_options_selection?.media_gallery.length
+  const selectedGallery = product?.configurable_product_options_selection?.media_gallery?.length
     ? product.configurable_product_options_selection.media_gallery
     : product.media_gallery;
 
-  for (const galleryItem of selectedGallery) {
-    images.push({
-      small: galleryItem.url,
-      normal: galleryItem.url,
-      big: galleryItem.url,
-    });
+  if (selectedGallery && selectedGallery.length > 0) {
+    for (const galleryItem of selectedGallery) {
+      images.push({
+        small: galleryItem?.url || undefined,
+        normal: galleryItem?.url || undefined,
+        big: galleryItem?.url || undefined,
+      });
+    }
   }
 
   return images.slice(0, maxGallerySize);
 };
+
 export default {
   getGallery,
 };
