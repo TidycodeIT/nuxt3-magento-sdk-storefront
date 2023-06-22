@@ -107,7 +107,7 @@ import {
 } from '@storefront-ui/vue';
 import { clamp } from '@storefront-ui/shared';
 import { useCounter } from '@vueuse/core';
-import { Product, ProductInterface } from '@vue-storefront/magento-api-types';
+import { Product, ProductInterface } from '@vue-storefront/magento-types';
 
 const props = defineProps<{ product: Product, productDetails: ProductInterface }>()
 

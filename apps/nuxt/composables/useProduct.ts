@@ -1,5 +1,5 @@
 import { sdk } from "~/sdk.config";
-import { SortEnum, Product, ProductInterface } from "@vue-storefront/magento-types";
+import { SortEnum, Product } from "@vue-storefront/magento-types";
 
 
 export default function () {
