@@ -35,6 +35,7 @@ If you're looking for the magento2-sdk repo you can find it here: https://github
 ## Useful Links
 
 [Discord invite link](https://discord.com/invite/2yY2jJK)
+
 [Discord Channel for this project](https://discord.com/channels/770285988244750366/1118217168258089110)
 
 [Magento 2 SDK Docs](https://docs.vuestorefront.io/sdk-magento2/)
