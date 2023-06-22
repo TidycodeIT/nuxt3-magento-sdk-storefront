@@ -56,12 +56,6 @@
                       </li>
                     </ul>
                   </div>
-                  <!-- <div
-                    class="flex flex-col items-center justify-center bg-neutral-100 md:rounded-md border-neutral-300 overflow-hidden grow"
-                  >
-                    <img :src="bannerDetails.image" :alt="bannerDetails.title" class="object-contain" />
-                    <p class="mb-4 mt-4 px-4 text-center typography-text-base font-medium">{{ bannerDetails.title }}</p>
-                  </div> -->
                   <SfButton square size="sm" variant="tertiary" aria-label="Close navigation menu"
                     class="hidden md:block md:absolute md:right-0 hover:bg-white active:bg-white" @click="close()">
                     <SfIconClose class="text-neutral-500" />
@@ -135,8 +129,6 @@ const actionItems = [
     role: 'login',
   },
 ];
-
-
 
 const { data } = await useAsyncData(async () => await sdk.magento.categoryList({}))
 
