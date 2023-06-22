@@ -89,22 +89,24 @@ import {
 } from '@storefront-ui/vue';
 import { unrefElement, useIntersectionObserver } from '@vueuse/core';
 import { watch, type ComponentPublicInstance } from 'vue';
+import type { ProductInterface, Product} from '@vue-storefront/magento-types'
+import {useProductGallery} from '~/composables'
 
-const withBase = (filepath: string) => `https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/gallery/${filepath}`;
+const props = defineProps<{ product: Product, productDetails: ProductInterface }>()
 
-const images = [
-  { imageSrc: withBase('gallery_1.png'), imageThumbSrc: withBase('gallery_1_thumb.png'), alt: 'backpack1' },
-  { imageSrc: withBase('gallery_2.png'), imageThumbSrc: withBase('gallery_2_thumb.png'), alt: 'backpack2' },
-  { imageSrc: withBase('gallery_3.png'), imageThumbSrc: withBase('gallery_3_thumb.png'), alt: 'backpack3' },
-  { imageSrc: withBase('gallery_4.png'), imageThumbSrc: withBase('gallery_4_thumb.png'), alt: 'backpack4' },
-  { imageSrc: withBase('gallery_5.png'), imageThumbSrc: withBase('gallery_5_thumb.png'), alt: 'backpack5' },
-  { imageSrc: withBase('gallery_6.png'), imageThumbSrc: withBase('gallery_6_thumb.png'), alt: 'backpack6' },
-  { imageSrc: withBase('gallery_7.png'), imageThumbSrc: withBase('gallery_7_thumb.png'), alt: 'backpack7' },
-  { imageSrc: withBase('gallery_8.png'), imageThumbSrc: withBase('gallery_8_thumb.png'), alt: 'backpack8' },
-  { imageSrc: withBase('gallery_9.png'), imageThumbSrc: withBase('gallery_9_thumb.png'), alt: 'backpack9' },
-  { imageSrc: withBase('gallery_10.png'), imageThumbSrc: withBase('gallery_10_thumb.png'), alt: 'backpack10' },
-  { imageSrc: withBase('gallery_11.png'), imageThumbSrc: withBase('gallery_11_thumb.png'), alt: 'backpack11' },
-];
+const { productGallery } = useProductGallery(props.product);
+
+type ImageObj = {
+  imageSrc: string | undefined
+  imageThumbSrc: string | undefined
+  alt: string | undefined
+}
+const images = ref<ImageObj[]>([])
+
+productGallery.value.map(img => {
+ images.value.push({imageSrc: img.desktop?.url, imageThumbSrc: img.mobile?.url, alt: img?.alt})
+})
+
 const thumbsRef = ref<HTMLElement>();
 const firstThumbRef = ref<HTMLButtonElement>();
 const lastThumbRef = ref<HTMLButtonElement>();

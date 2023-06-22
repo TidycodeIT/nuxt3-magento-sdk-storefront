@@ -1,10 +1,11 @@
-import {sdk} from "~/sdk.config";
-import { SortEnum } from "@vue-storefront/magento-types";
+import { sdk } from "~/sdk.config";
+import { SortEnum, Product, ProductInterface } from "@vue-storefront/magento-types";
+
 
 export default function () {
     const search = async (term: string) => {
-        const {data, pending, refresh} = await useAsyncData('data', async () => {
-            console.log('refreshing products',search, term)
+        const { data, pending, refresh } = await useAsyncData('data', async () => {
+            console.log('refreshing products', search, term)
             return await sdk.magento.products({
                 pageSize: 8,
                 currentPage: 1,
@@ -25,8 +26,34 @@ export default function () {
         }
     }
 
+    const getProduct = async (sku: string) => {
+
+        const customQuery = {
+            products: 'products-custom-query',
+              metadata: {
+                fields: 'items { sku name media_gallery { url label position disabled} }'
+              }
+           };
+
+        const { data, pending, refresh } = await useAsyncData('data', async () => await sdk.magento.products({
+            filter: {
+                sku: {
+                    eq: sku
+                }
+            },
+
+        }, {customQuery}))
+
+        return {
+            data: data?.value?.data?.products?.items?.[0],
+            pending,
+            refresh
+
+        }
+    }
+
     const getProductDetails = async (sku: string) => {
-        const {data, pending, refresh} = await useAsyncData('data', async () => {
+        const { data, pending, refresh } = await useAsyncData('data', async () => {
             console.log('fetching product by sku', getProductDetails, sku)
             return await sdk.magento.productDetails({
                 filter: {
@@ -38,17 +65,43 @@ export default function () {
         })
 
         const productDetails = useState('productDetails')
-        productDetails.value = data.value?.data?.products?.items
+        productDetails.value = data.value?.data?.products?.items?.[0]
 
         return {
-            data: data.value?.data?.products?.items,
+            data: data.value?.data?.products?.items?.[0],
             pending,
             refresh
         }
     }
-    
+
+    const getDisplayPrice = (product: Product, locales = 'en-US') => {
+        const currency = product.price_range?.minimum_price?.regular_price.currency as string
+        const price = product.price_range?.minimum_price?.regular_price.value?.valueOf() as number
+
+        return price ? new Intl.NumberFormat(locales, {
+            style: 'currency',
+            currency: currency
+        }).format(price) : undefined
+    }
+    const getThumbnailUrl = (details: any) => {
+        return details.thumbnail.url as string ?? ''
+    }
+
+    const getProductDescription = (details: any) => {
+        return details?.description?.html
+    }
+
+    const getLabel = (details: any) => {
+        return details.thumbnail.label as string
+    }
+
     return {
         search,
-        getProductDetails
+        getProduct,
+        getProductDetails,
+        getDisplayPrice,
+        getThumbnailUrl,
+        getProductDescription,
+        getLabel
     }
 }
