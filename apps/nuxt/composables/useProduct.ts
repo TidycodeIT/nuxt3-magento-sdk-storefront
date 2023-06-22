@@ -1,5 +1,5 @@
 import { sdk } from "~/sdk.config";
-import { SortEnum, Product } from "@vue-storefront/magento-types";
+import { SortEnum, Product, ProductInterface } from "@vue-storefront/magento-types";
 
 
 export default function () {
@@ -95,6 +95,11 @@ export default function () {
         return details.thumbnail.label as string
     }
 
+    const getProductPath = (product: ProductInterface) => {
+        if (!product) return '/';
+        return `/${product?.url_rewrites?.[0]?.url ?? product.url_key}`;
+    };
+
     return {
         search,
         getProduct,
@@ -102,6 +107,7 @@ export default function () {
         getDisplayPrice,
         getThumbnailUrl,
         getProductDescription,
-        getLabel
+        getLabel,
+        getProductPath
     }
 }
