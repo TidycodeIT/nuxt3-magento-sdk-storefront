@@ -1,7 +1,7 @@
 ![Image](https://user-images.githubusercontent.com/45824492/245919144-03993fa2-1061-4c24-8e38-4be806725131.png)
 
-# The Next Magneto Storefront from Vue Storefront
-A boilerplate storefront built with the Vue Storefront Magento 2 Integration and Storefront UI
+# The Next Magento Storefront from Vue Storefront
+A boilerplate storefront built with the Vue Storefront Magento 2 Integration and Storefront UI 2
 
 🚧 This repo is under heavy development. Expect breaking changes regularly. Do not use for production 🚧
 
@@ -33,6 +33,8 @@ If you're looking for the magento2-sdk repo you can find it here: https://github
 
 
 ## Useful Links
+
+[Discord invite link](https://discord.com/invite/2yY2jJK)
 
 [Discord Channel for this project](https://discord.com/channels/770285988244750366/1118217168258089110)
 

@@ -3,19 +3,20 @@
         <div class="relative">
             <SfLink :href="productPath">
                 <img :src="product.thumbnail?.url ?? ''" alt="Great product"
-                     class="block object-cover h-auto rounded-md aspect-square" :width="300" :height="300"/>
+                    class="block object-cover h-auto rounded-md aspect-square" :width="300" :height="300" />
             </SfLink>
             <SfButton type="button" variant="tertiary" size="sm" square
-                      class="absolute bottom-0 right-0 mr-2 mb-2 bg-white border border-neutral-200 !rounded-full"
-                      aria-label="Add to wishlist">
-                <SfIconFavorite size="sm"/>
+                class="absolute bottom-0 right-0 mr-2 mb-2 bg-white border border-neutral-200 !rounded-full"
+                aria-label="Add to wishlist">
+                <SfIconFavorite size="sm" />
             </SfButton>
         </div>
         <div class="p-4 border-t border-neutral-200">
-            <SfLink :href="`/${product.url_key}${product.url_suffix}`" variant="secondary" class="no-underline"> {{ product.name }}
+            <SfLink :href="`/${product.url_key}${product.url_suffix}`" variant="secondary" class="no-underline"> {{
+                product.name }}
             </SfLink>
             <div class="flex items-center pt-1">
-                <SfRating size="xs" :value="5" :max="5"/>
+                <SfRating size="xs" :value="5" :max="5" />
 
                 <SfLink href="#" variant="secondary" class="pl-1 no-underline">
                     <SfCounter size="xs">123</SfCounter>
@@ -27,7 +28,7 @@
                 <div class="mb-2">
                     <SfButton type="button" size="sm">
                         <template #prefix>
-                            <SfIconShoppingCart size="sm"/>
+                            <SfIconShoppingCart size="sm" />
                         </template>
                         Add to cart
                     </SfButton>
@@ -48,12 +49,11 @@ import {
     SfIconFavorite,
     SfIconInfo
 } from '@storefront-ui/vue';
-import { ProductInterface } from '@vue-storefront/magento-types';
+import { Product } from '@vue-storefront/magento-types';
+import { getDisplayPrice, getProductPath } from '~/modules/catalog/product/getters/productGetters'
 
-const props = defineProps<{ product: ProductInterface }>()
+const props = defineProps<{ product: Product }>()
 const product = props.product
-const {getDisplayPrice, getProductPath} = useProduct()
-const sku = product.sku as string
 const displayPrice = computed(() => getDisplayPrice(product))
 const productPath = computed(() => getProductPath(product))
 </script>
