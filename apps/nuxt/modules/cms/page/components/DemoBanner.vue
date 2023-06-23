@@ -1,5 +1,5 @@
 <template>
-  <div id="home" class="p-4">
+  <div id="home" class="flex justify-center p-4">
     <div class="flex flex-col md:flex-row flex-wrap gap-6 max-w-[1540px]">
       <div
           v-for="{
