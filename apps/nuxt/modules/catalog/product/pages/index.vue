@@ -5,6 +5,7 @@
         class="!w-auto" />
     </div>
     <ProductDetailsCard :productDetails="productDetails.data" :product="product.data" />
+    <ProductReviews v-if="product.data?.review_count" :product-reviews="product.data?.reviews" />
   </section>
 </template>
 
@@ -12,6 +13,7 @@
 <script lang="ts" setup>
 import ProductDetailsCard from "~/modules/catalog/product/components/ProductDetailsCard.vue";
 import ProductVerticalGallery from "~/modules/catalog/product/components/ProductVerticalGallery.vue";
+import ProductReviews from "~/modules/catalog/product/components/ProductReviews.vue";
 
 const { getProductDetails, getProduct } = useProduct()
 
