@@ -7,8 +7,8 @@
     <h1 class="mb-1 font-bold typography-headline-4">{{ product.name }}</h1>
     <strong class="block font-bold typography-headline-3"> {{ displayPrice }}</strong>
     <div class="inline-flex items-center mt-4 mb-2">
-      <SfRating size="xs" :value="3" :max="5" />
-      <SfCounter class="ml-1" size="xs">123</SfCounter>
+      <SfRating size="xs" :half-increment="true" :value="(product.rating_summary || 0)/20" :max="5" />
+      <SfCounter class="ml-1" size="xs">{{ product.rating_summary || 0 }}</SfCounter>
       <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500"> {{ product.review_count }} reviews
       </SfLink>
     </div>
