@@ -87,7 +87,7 @@
 </template>
 
 <script lang="ts" setup>
-import { MAX_AVERAGE_RATING, RATING_CONVERSION_FACTOR, FALLBACK_RATING } from '~/helper/constants'
+import { MAX_AVERAGE_RATING, RATING_CONVERSION_FACTOR, FALLBACK_RATING } from '~/helpers/constants'
 
 import { ref } from 'vue';
 import {

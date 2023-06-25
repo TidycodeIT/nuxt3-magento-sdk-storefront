@@ -12,7 +12,7 @@
             </SfButton>
         </div>
         <div class="p-4 border-t border-neutral-200">
-            <SfLink :href="`/${product.url_key}${product.url_suffix}`" variant="secondary" class="no-underline"> 
+            <SfLink :href="`/${product.url_key}${product.url_suffix}`" variant="secondary" class="no-underline">
             {{ product.name }}
             </SfLink>
             <div class="flex items-center pt-1">
@@ -40,15 +40,14 @@
 </template>
 
 <script lang="ts" setup>
-import { MAX_AVERAGE_RATING, FALLBACK_RATING, RATING_CONVERSION_FACTOR } from '~/helper/constants'
+import { MAX_AVERAGE_RATING, FALLBACK_RATING, RATING_CONVERSION_FACTOR } from '~/helpers/constants'
 import {
     SfRating,
     SfCounter,
     SfLink,
     SfButton,
     SfIconShoppingCart,
-    SfIconFavorite,
-    SfIconInfo
+    SfIconFavorite
 } from '@storefront-ui/vue';
 import { Product } from '@vue-storefront/magento-types';
 import { getDisplayPrice, getProductPath } from '~/modules/catalog/product/getters/productGetters'
