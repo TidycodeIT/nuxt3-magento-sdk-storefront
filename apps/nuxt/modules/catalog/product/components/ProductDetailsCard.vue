@@ -7,7 +7,7 @@
     <h1 class="mb-1 font-bold typography-headline-4">{{ product.name }}</h1>
     <strong class="block font-bold typography-headline-3"> {{ displayPrice }}</strong>
     <div class="inline-flex items-center mt-4 mb-2">
-      <SfRating size="xs" :half-increment="TRUE_FLAG" :value="(product.rating_summary || FALLBACK_RATING)/RATING_CONVERSION_FACTOR" :max="MAX_AVERAGE_RATING" />
+      <SfRating size="xs" :half-increment="true" :value="(product.rating_summary || FALLBACK_RATING)/RATING_CONVERSION_FACTOR" :max="MAX_AVERAGE_RATING" />
       <SfCounter class="ml-1" size="xs">{{ product.review_count || FALLBACK_RATING }}</SfCounter>
       <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500"> {{ product.review_count }} reviews
       </SfLink>
@@ -87,7 +87,7 @@
 </template>
 
 <script lang="ts" setup>
-import { MAX_AVERAGE_RATING, RATING_CONVERSION_FACTOR, FALLBACK_RATING, TRUE_FLAG } from '~/constants'
+import { MAX_AVERAGE_RATING, RATING_CONVERSION_FACTOR, FALLBACK_RATING } from '~/helper/constants'
 
 import { ref } from 'vue';
 import {
