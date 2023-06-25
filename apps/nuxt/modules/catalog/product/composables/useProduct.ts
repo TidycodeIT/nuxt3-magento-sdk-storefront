@@ -1,9 +1,10 @@
-import { sdk } from "~/sdk.config";
-import { SortEnum, Product, ProductInterface } from "@vue-storefront/magento-types";
+import {sdk} from "~/sdk.config";
+import {SortEnum} from "@vue-storefront/magento-types";
+import {customProductQuery} from '~/modules/catalog/product/customQueries/customProductQuery';
 
 export default function () {
     const search = async (term: string) => {
-        const { data, pending, refresh } = await useAsyncData('data', async () => {
+        const {data, pending, refresh} = await useAsyncData('data', async () => {
             console.log('refreshing products', search, term)
             return await sdk.magento.products({
                 pageSize: 8,
@@ -26,61 +27,24 @@ export default function () {
     }
 
     const getProduct = async (sku: string) => {
-
-        const customQuery = {
-            products: 'products-custom-query',
-            metadata: {
-                fields: `items {
-                        sku
-                        name
-                        media_gallery { 
-                            url
-                            label
-                            position
-                            disabled 
-                        } 
-                        price_range {
-                            minimum_price {
-                                 regular_price {
-                                    value
-                                    currency 
-                                } 
-                            }
-                        }
-                        review_count
-                        rating_summary
-                        reviews {
-                            items {
-                                summary
-                                text
-                                created_at
-                                average_rating
-                                nickname
-                            }
-                        }
-                    }`
-            }
-        };
-
-        const { data, pending, refresh } = await useAsyncData('data', async () => await sdk.magento.products({
+        const {data, pending, refresh} = await useAsyncData('data', async () => await sdk.magento.products({
             filter: {
                 sku: {
                     eq: sku
                 }
             },
 
-        }, { customQuery }))
+        }, {customQuery: customProductQuery}))
 
         return {
             data: data?.value?.data?.products?.items?.[0],
             pending,
             refresh
-
         }
     }
 
     const getProductDetails = async (sku: string) => {
-        const { data, pending, refresh } = await useAsyncData('data', async () => {
+        const {data, pending, refresh} = await useAsyncData('data', async () => {
             console.log('fetching product by sku', getProductDetails, sku)
             return await sdk.magento.productDetails({
                 filter: {
