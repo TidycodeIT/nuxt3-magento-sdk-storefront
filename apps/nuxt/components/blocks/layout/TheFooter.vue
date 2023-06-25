@@ -38,7 +38,7 @@
         </p>
       </div>
     </div>
-    <div class="bg-neutral-900 justify-end px-4 py-10 md:flex md:py-6 max-w-[1536px] mx-auto">
+    <div class="bg-neutral-900 justify-end px-4 py-10 md:flex md:py-6 w-full">
       <div class="flex justify-center py-2 gap-x-4 md:self-start">
         <SfButton
           v-for="{ label, link, icon } in socialMedia"
