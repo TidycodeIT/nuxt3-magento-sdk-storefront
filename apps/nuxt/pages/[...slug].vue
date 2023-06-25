@@ -5,8 +5,17 @@
 </template>
   
 <script lang="ts" setup>
-import CATEGORY from '~/modules/catalog/category/pages/index.vue';
-import PRODUCT from '~/modules/catalog/product/pages/index.vue';
+import { defineAsyncComponent } from 'vue'
+
+const CATEGORY = markRaw(defineAsyncComponent(() =>
+  import('~/modules/catalog/category/pages/index.vue')
+  )
+)
+
+const PRODUCT = markRaw(defineAsyncComponent(() =>
+  import('~/modules/catalog/product/pages/index.vue')
+  )
+)
 
 const category = useState<{ type: string }>('routeData')?.value?.type
 const type = ref();

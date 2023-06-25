@@ -40,7 +40,7 @@
                       <SfIconClose />
                     </SfButton>
                   </div>
-                  <div v-for="{ heading, items } in categoriesContent" :key="heading"
+                  <div v-for="({ heading, items }, index) in categoriesContent" :key="index"
                     class="[&:nth-child(2)]:pt-0 pt-6 md:pt-0">
                     <h2 role="presentation"
                       class="typography-text-base font-medium text-neutral-900 whitespace-nowrap p-4 md:py-1.5">
