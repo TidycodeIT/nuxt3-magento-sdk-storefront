@@ -19,7 +19,7 @@ import CategoryFilter from '~/modules/catalog/category/components/CategoryFilter
 
 const routeData = useState<{ type: string, uid: string }>('routeData')
 
-const gql = `children_count children {name uid} products { items {  uid sku url_rewrites { url } name url_key url_suffix  thumbnail {url} } }`
+const gql = `children_count children {name uid} products { items { review_count rating_summary uid sku url_rewrites { url } name url_key url_suffix  thumbnail {url} } }`
 
 const customQuery = {
   categorySearch: 'category-search-custom-query',

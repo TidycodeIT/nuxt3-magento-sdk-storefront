@@ -12,14 +12,14 @@
             </SfButton>
         </div>
         <div class="p-4 border-t border-neutral-200">
-            <SfLink :href="`/${product.url_key}${product.url_suffix}`" variant="secondary" class="no-underline"> {{
-                product.name }}
+            <SfLink :href="`/${product.url_key}${product.url_suffix}`" variant="secondary" class="no-underline"> 
+            {{ product.name }}
             </SfLink>
             <div class="flex items-center pt-1">
-                <SfRating size="xs" :value="5" :max="5" />
+                <SfRating :half-increment="true" :value="(product.rating_summary || FALLBACK_RATING)/RATING_CONVERSION_FACTOR" :max="MAX_AVERAGE_RATING" />
 
                 <SfLink href="#" variant="secondary" class="pl-1 no-underline">
-                    <SfCounter size="xs">123</SfCounter>
+                    <SfCounter size="xs">{{ product.review_count || FALLBACK_RATING }}</SfCounter>
                 </SfLink>
             </div>
 
@@ -40,6 +40,7 @@
 </template>
 
 <script lang="ts" setup>
+import { MAX_AVERAGE_RATING, FALLBACK_RATING, RATING_CONVERSION_FACTOR } from '~/helper/constants'
 import {
     SfRating,
     SfCounter,
