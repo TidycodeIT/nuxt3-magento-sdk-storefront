@@ -5,7 +5,7 @@
         <div class="flex-col">
           <span class="text-sm text-neutral-900">{{ productReview.userName }}</span>
           <span class="flex items-center pr-2 text-xs text-neutral-500">
-            <SfRating :half-increment="true" :value="productReview.averageRating" :max="MAX_AVERAGE_RATING" size="xs" class="mr-2" />
+            <SfRating :half-increment="TRUE_FLAG" :value="productReview.averageRating" :max="MAX_AVERAGE_RATING" size="xs" class="mr-2" />
             {{ productReview.createdAt }}
           </span>
         </div>
@@ -16,14 +16,15 @@
 </template>
 
 <script lang="ts" setup>
+import { MAX_AVERAGE_RATING, RATING_CONVERSION_FACTOR, FALLBACK_RATING, TRUE_FLAG } from '~/constants'
+
 import { SfRating } from '@storefront-ui/vue';
 import { ProductReviews } from '@vue-storefront/magento-types';
 const props = defineProps<{ productReviews: ProductReviews }>()
-const MAX_AVERAGE_RATING = 5
 
 const productReviewItems = computed(() => props.productReviews?.items.map(item => ({
   userName: item?.nickname,
-  averageRating:(item?.average_rating || 0)/20,
+  averageRating:(item?.average_rating || FALLBACK_RATING)/RATING_CONVERSION_FACTOR,
   createdAt: item?.created_at ? new Date(item.created_at).toDateString(): '',
   text: item?.text,
   summary: item?.summary
