@@ -1,11 +1,13 @@
 <template>
-  <section class="flex items-center gap-8 flex-wrap p-6">
+  <section class="flex items-center gap-8 flex-wrap p-6 mb-4 md:mb-8">
     <div>
       <ProductVerticalGallery v-if="productDetails.data && product.data" :productDetails="productDetails.data" :product="product.data"
         class="!w-auto" />
     </div>
     <ProductDetailsCard :productDetails="productDetails.data" :product="product.data" />
-    <ProductReviews v-if="product.data?.review_count" :product-reviews="product.data?.reviews" />
+    <div v-if="product.data?.review_count" class="grid gap-4 md:grid-cols-3 xl:grid-cols-4">
+      <ProductReviews :product-reviews="product.data?.reviews" />
+    </div>
   </section>
 </template>
 
