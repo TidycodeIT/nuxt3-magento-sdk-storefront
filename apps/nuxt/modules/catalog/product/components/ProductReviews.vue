@@ -17,9 +17,9 @@
 
 <script lang="ts" setup>
 import { MAX_AVERAGE_RATING, RATING_CONVERSION_FACTOR, FALLBACK_RATING } from '~/helper/constants'
-
 import { SfRating } from '@storefront-ui/vue';
 import { ProductReviews } from '@vue-storefront/magento-types';
+  
 const props = defineProps<{ productReviews: ProductReviews }>()
 
 const productReviewItems = computed(() => props.productReviews?.items.map(item => ({
