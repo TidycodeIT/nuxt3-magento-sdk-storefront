@@ -3,7 +3,7 @@
     <component :is="type" v-if="type" />
   </div>
 </template>
-  
+
 <script lang="ts" setup>
 import { defineAsyncComponent } from 'vue'
 
@@ -17,16 +17,16 @@ const PRODUCT = markRaw(defineAsyncComponent(() =>
   )
 )
 
-const category = useState<{ type: string }>('routeData')?.value?.type
+const routeType = useState<{ type: string }>('routeData')?.value?.type
 const type = ref();
 
-if (category == 'PRODUCT') {
+if (routeType == 'PRODUCT') {
   type.value = PRODUCT
 }
 
-if (category == 'CATEGORY') {
+if (routeType == 'CATEGORY') {
   type.value = CATEGORY
 }
 </script>
-  
-  
+
+
