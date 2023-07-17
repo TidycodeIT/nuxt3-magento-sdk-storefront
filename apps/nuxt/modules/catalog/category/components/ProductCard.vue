@@ -1,7 +1,7 @@
 <template>
     <div class="border border-neutral-200 rounded-md hover:shadow-lg max-w-[300px]">
         <div class="relative">
-            <SfLink :href="productPath">
+            <SfLink :tag="NuxtLink" :href="productPath">
                 <img :src="product.thumbnail?.url ?? ''" alt="Great product"
                     class="block object-cover h-auto rounded-md aspect-square" :width="300" :height="300" />
             </SfLink>
@@ -12,13 +12,13 @@
             </SfButton>
         </div>
         <div class="p-4 border-t border-neutral-200">
-            <SfLink :href="`/${product.url_key}${product.url_suffix}`" variant="secondary" class="no-underline">
+            <SfLink :tag="NuxtLink" :href="`/${product.url_key}${product.url_suffix}`" variant="secondary" class="no-underline">
             {{ product.name }}
             </SfLink>
             <div class="flex items-center pt-1">
                 <SfRating :half-increment="true" :value="(product.rating_summary || FALLBACK_RATING)/RATING_CONVERSION_FACTOR" :max="MAX_AVERAGE_RATING" />
 
-                <SfLink href="#" variant="secondary" class="pl-1 no-underline">
+                <SfLink :tag="NuxtLink" href="#" variant="secondary" class="pl-1 no-underline">
                     <SfCounter size="xs">{{ product.review_count || FALLBACK_RATING }}</SfCounter>
                 </SfLink>
             </div>
@@ -51,6 +51,7 @@ import {
 } from '@storefront-ui/vue';
 import { Product } from '@vue-storefront/magento-types';
 import { getDisplayPrice, getProductPath } from '~/modules/catalog/product/getters/productGetters'
+import {NuxtLink} from "#components";
 
 const props = defineProps<{ product: Product }>()
 const product = props.product

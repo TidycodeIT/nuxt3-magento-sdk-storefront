@@ -19,5 +19,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         return;
     }
 
-    useState('routeData', () => routeData)
+    const routeState = useState('routeData', () => routeData)
+
+    if (to.path !== from.path) {
+        routeState.value = routeData
+    }
 })

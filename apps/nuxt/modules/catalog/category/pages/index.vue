@@ -30,6 +30,10 @@ const customQuery = {
 
 const categoryParam = useState('selectedCategory', () => routeData.value.uid)
 
+watch(routeData, () => {
+  categoryParam.value = routeData.value.uid
+}, { immediate: true, deep: true })
+
 const { data } = await useAsyncData(`category${categoryParam.value}`, async () => await sdk.magento.categorySearch({
   filters: {
     category_uid: {
