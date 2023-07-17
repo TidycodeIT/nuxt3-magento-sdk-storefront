@@ -111,6 +111,12 @@ onClickOutside(menuRef, () => {
   close();
 });
 
+const route = useRoute()
+
+watch(route, () => {
+  close()
+})
+
 const actionItems = [
   {
     icon: SfIconShoppingCart,
