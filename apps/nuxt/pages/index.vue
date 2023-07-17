@@ -7,19 +7,20 @@
 <script lang="ts" setup>
 import CMS_PAGE from '~/modules/cms/page/pages/index.vue';
 import {sdk} from "~/sdk.config";
+import useCms from "~/modules/cms/composables/useCms";
 
-const { data: { cmsPage: pageData }} = await sdk.magento.cmsPage({
-  identifier: 'home'
-})
+ const cms = useCms()
 
-useHead({
-  title: pageData?.meta_title || pageData?.title,
-  meta: [{
-    name: 'description',
-    content: pageData?.description
-  },{
-    name: 'keywords',
-    content: pageData?.meta_keywords || ''
-  }]
-})
+const {pageData} = await cms.getCms()
+
+  useHead({
+    title: pageData?.meta_title || pageData?.title,
+    meta: [{
+      name: 'description',
+      content: pageData?.description
+    },{
+      name: 'keywords',
+      content: pageData?.meta_keywords || ''
+    }]
+  })
 </script>
