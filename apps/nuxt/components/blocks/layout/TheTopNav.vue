@@ -49,10 +49,10 @@
                     <hr class="mb-3.5" />
                     <ul>
                       <li v-for="item in items" :key="item.title">
-                        <SfListItem tag="a" :href="item.link" size="sm" role="none"
+                        <ListItem :tag="NuxtLink" :href="item.link" size="sm" role="none"
                           class="typography-text-base md:typography-text-sm py-4 md:py-1.5">
                           {{ item.title }}
-                        </SfListItem>
+                        </ListItem>
                       </li>
                     </ul>
                   </div>
@@ -80,6 +80,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { NuxtLink } from '#components';
 import {
   SfButton,
   SfDrawer,
@@ -95,6 +96,7 @@ import {
 import { ref } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import { sdk } from "~/sdk.config";
+import ListItem from "~/components/ui/ListItem.vue";
 
 const { isOpen, toggle, close } = useDisclosure();
 const menuRef = ref();
