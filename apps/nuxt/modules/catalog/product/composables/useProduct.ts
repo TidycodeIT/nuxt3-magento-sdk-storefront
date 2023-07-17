@@ -1,6 +1,7 @@
 import {sdk} from "~/sdk.config";
 import {SortEnum} from "@vue-storefront/magento-types";
 import {customProductQuery} from '~/modules/catalog/product/customQueries/customProductQuery';
+import {customProductDetailsQuery} from '~/modules/catalog/product/customQueries/customProductDetailsQuery';
 
 export default function () {
     const search = async (term: string) => {
@@ -44,24 +45,28 @@ export default function () {
     }
 
     const getProductDetails = async (sku: string) => {
-        const {data, pending, refresh} = await useAsyncData('data', async () => {
-            console.log('fetching product by sku', getProductDetails, sku)
-            return await sdk.magento.productDetails({
-                filter: {
-                    sku: {
-                        eq: sku
-                    }
-                },
+        try {
+            const {data, pending, refresh} = await useAsyncData('data', async () => {
+                console.log('fetching product by sku', getProductDetails, sku)
+                return await sdk.magento.productDetails({
+                    filter: {
+                        sku: {
+                            eq: sku
+                        }
+                    },
+                }, {customQuery: customProductDetailsQuery})
             })
-        })
 
-        const productDetails = useState('productDetails')
-        productDetails.value = data.value?.data?.products?.items?.[0]
+            const productDetails = useState('productDetails')
+            productDetails.value = data.value?.data?.products?.items?.[0]
 
-        return {
-            data: data.value?.data?.products?.items?.[0],
-            pending,
-            refresh
+            return {
+                data: data.value?.data?.products?.items?.[0],
+                pending,
+                refresh
+            }
+        } catch (e) {
+            console.log('error fetching product details', e)
         }
     }
 
