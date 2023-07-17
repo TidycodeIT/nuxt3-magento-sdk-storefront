@@ -2,7 +2,7 @@
   <div>
     <DemoBanner v-if="homeDemo" />
     <PageBuilder v-if="enablePageBuilder"></PageBuilder>
-    <div v-else v-html="props.content" />
+    <div v-else v-html="props?.content" />
   </div>
 </template>
 
