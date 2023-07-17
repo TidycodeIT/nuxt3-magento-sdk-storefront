@@ -30,8 +30,8 @@ export function useImage(): UseImageInterface {
     if (!fullImageUrl) return '';
 
     const config = useRuntimeConfig()
-    const magentoBaseUrl = config?.private?.magentoBaseUrl
-    const imageProvider = config?.private?.imageProvider
+    const magentoBaseUrl = config?.public?.magentoBaseUrl
+    const imageProvider = config?.public?.imageProvider
 
     if (imageProvider !== 'ipx') {
       const url = fullImageUrl.split(`${magentoBaseUrl}`);

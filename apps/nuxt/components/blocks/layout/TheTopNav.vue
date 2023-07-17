@@ -4,7 +4,7 @@
     <header ref="menuRef"
       class="flex justify-center w-full border-0 bg-primary-700 border-neutral-200 h-14 md:relative md:h-20 md:z-10">
       <div class="flex items-center flex-nowrap justify-start h-full max-w-[1536px] w-full px-4 md:px-10">
-        <a href="/" aria-label="SF Homepage"
+        <NuxtLink to="/" aria-label="SF Homepage"
           class="flex shrink-0 text-white mr-2 md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm">
           <picture>
             <source
@@ -13,7 +13,7 @@
             <img src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_sign_white.svg"
               alt="Sf Logo" class="w-8 h-8 lg:w-[12.5rem] lg:h-[1.75rem]" />
           </picture>
-        </a>
+        </NuxtLink>
         <nav class="flex w-full justify-between flex-nowrap" aria-label="SF Navigation">
           <ul>
             <li role="none">
