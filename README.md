@@ -6,22 +6,37 @@ A boilerplate storefront built with the Vue Storefront Magento 2 Integration and
 🚧 This repo is under heavy development. Expect breaking changes regularly. Do not use for production 🚧
 
 ## Getting Started
+
+### Cloning the repository
 clone the project
 ```
 git clone https://github.com/vuestorefront/nuxt3-magento-sdk-storefront.git
 ```
-cd into project
+
+cd into the cloned folder
 ```
 cd nuxt3-magento-sdk-storefront
 ```
+
 Install dependencies
 ```
 yarn install
 ```
+
+### Configure
+Ensure you have a running magento instance. 
+
+- Create an `.env` file in `apps/middleware` (use the `.env.example` as template ).
+- Create an `.env` file in `apps/nuxt` (use the `.env.example` as template ).
+
+### Fire it up
+
 run app
 ```
 yarn dev
 ```
+
+
 
 
 ## Contributors
