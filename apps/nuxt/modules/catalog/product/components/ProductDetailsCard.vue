@@ -41,7 +41,7 @@
             <strong class="text-neutral-900">{{ max }}</strong> in stock
           </p>
         </div>
-        <SfButton type="button" size="lg" class="w-full xs:ml-4">
+        <SfButton type="button" size="lg" class="w-full xs:ml-4" @click="addToCart(product)">
           <template #prefix>
             <SfIconShoppingCart size="sm" />
           </template>
@@ -111,6 +111,7 @@ import { clamp } from '@storefront-ui/shared';
 import { useCounter } from '@vueuse/core';
 import { Product, ProductInterface } from '@vue-storefront/magento-types';
 import { getProductDescription, getDisplayPrice } from '~/modules/catalog/product/getters/productGetters'
+import {useCart} from "~/modules/checkout/composables/useCart";
 const props = defineProps<{ product: Product, productDetails: ProductInterface }>()
 
 const product = props.product
@@ -122,7 +123,7 @@ const min = ref(1);
 const max = ref(999);
 const { count, inc, dec, set } = useCounter(1, { min: min.value, max: max.value });
 const displayPrice = computed(() => getDisplayPrice(product))
-
+const {addToCart} = useCart()
 function handleOnChange(event: Event) {
   const currentValue = (event.target as HTMLInputElement)?.value;
   const nextValue = parseFloat(currentValue);
